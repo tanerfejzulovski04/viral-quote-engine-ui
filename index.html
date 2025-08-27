@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viral Quote Engine - MVP Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="toast-container" class="toast-container"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-quote-right"></i>
+            Viral Quote Engine
+        </div>
+        <div class="nav-links">
+            <button id="login-btn" class="nav-btn">Login</button>
+            <button id="register-btn" class="nav-btn">Register</button>
+            <button id="logout-btn" class="nav-btn hidden">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div id="app-container">
+        
+        <!-- Welcome/Landing Screen -->
+        <div id="landing-screen" class="screen active">
+            <div class="hero">
+                <h1>Create Viral Quotes That Convert</h1>
+                <p>Design stunning quote graphics with AI-powered content optimization</p>
+                <button id="get-started-btn" class="cta-button">Get Started</button>
+            </div>
+        </div>
+
+        <!-- Registration Screen -->
+        <div id="register-screen" class="screen">
+            <div class="form-container">
+                <h2>Create Your Account</h2>
+                <form id="register-form">
+                    <input type="text" id="reg-name" placeholder="Full Name" required>
+                    <input type="email" id="reg-email" placeholder="Email Address" required>
+                    <input type="password" id="reg-password" placeholder="Password" required>
+                    <input type="password" id="reg-confirm" placeholder="Confirm Password" required>
+                    <button type="submit">Create Account</button>
+                </form>
+                <p>Already have an account? <a href="#" id="show-login">Login here</a></p>
+            </div>
+        </div>
+
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen">
+            <div class="form-container">
+                <h2>Login to Your Account</h2>
+                <form id="login-form">
+                    <input type="email" id="login-email" placeholder="Email Address" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="#" id="show-register">Register here</a></p>
+            </div>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboard-screen" class="screen">
+            <div class="dashboard-header">
+                <h2>Welcome to Your Dashboard</h2>
+                <p>Let's create some viral quotes!</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card" id="brand-kit-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>Brand Kit</h3>
+                    <p>Set up your brand colors and upload your logo</p>
+                    <button class="card-btn">Set Up Brand Kit</button>
+                </div>
+                
+                <div class="dashboard-card" id="templates-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Templates</h3>
+                    <p>Create and manage your quote templates</p>
+                    <button class="card-btn">Manage Templates</button>
+                </div>
+                
+                <div class="dashboard-card" id="editor-card">
+                    <i class="fas fa-edit"></i>
+                    <h3>Quote Editor</h3>
+                    <p>Design and optimize your quotes with AI</p>
+                    <button class="card-btn">Open Editor</button>
+                </div>
+                
+                <div class="dashboard-card" id="assets-card">
+                    <i class="fas fa-folder"></i>
+                    <h3>Assets Library</h3>
+                    <p>Manage your created graphics and exports</p>
+                    <button class="card-btn">View Assets</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Brand Kit Screen -->
+        <div id="brand-kit-screen" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" data-target="dashboard-screen">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </button>
+                <h2>Brand Kit Setup</h2>
+            </div>
+            
+            <div class="brand-kit-container">
+                <div class="brand-section">
+                    <h3>Logo Upload</h3>
+                    <div class="logo-upload-area" id="logo-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload your logo</p>
+                        <input type="file" id="logo-file" accept="image/*" hidden>
+                    </div>
+                    <div id="logo-preview" class="logo-preview hidden"></div>
+                </div>
+                
+                <div class="brand-section">
+                    <h3>Brand Colors</h3>
+                    <div class="color-inputs">
+                        <div class="color-group">
+                            <label>Primary Color</label>
+                            <input type="color" id="primary-color" value="#3b82f6">
+                        </div>
+                        <div class="color-group">
+                            <label>Secondary Color</label>
+                            <input type="color" id="secondary-color" value="#10b981">
+                        </div>
+                        <div class="color-group">
+                            <label>Accent Color</label>
+                            <input type="color" id="accent-color" value="#f59e0b">
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="save-brand-kit" class="cta-button">Save Brand Kit</button>
+            </div>
+        </div>
+
+        <!-- Templates Screen -->
+        <div id="templates-screen" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" data-target="dashboard-screen">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </button>
+                <h2>Quote Templates</h2>
+                <button id="new-template-btn" class="cta-button">
+                    <i class="fas fa-plus"></i> New Template
+                </button>
+            </div>
+            
+            <div class="templates-grid" id="templates-grid">
+                <!-- Templates will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Template Editor Screen -->
+        <div id="template-editor-screen" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" data-target="templates-screen">
+                    <i class="fas fa-arrow-left"></i> Back to Templates
+                </button>
+                <h2 id="template-editor-title">Create New Template</h2>
+                <button id="save-template-btn" class="cta-button">Save Template</button>
+            </div>
+            
+            <div class="template-editor-container">
+                <div class="template-form">
+                    <input type="text" id="template-name" placeholder="Template Name" class="template-input">
+                    <textarea id="template-description" placeholder="Template Description" class="template-input"></textarea>
+                    
+                    <div class="template-settings">
+                        <h3>Template Settings</h3>
+                        <div class="setting-group">
+                            <label>Background Style</label>
+                            <select id="bg-style">
+                                <option value="gradient">Gradient</option>
+                                <option value="solid">Solid Color</option>
+                                <option value="image">Background Image</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label>Text Alignment</label>
+                            <select id="text-align">
+                                <option value="center">Center</option>
+                                <option value="left">Left</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="template-preview">
+                    <h3>Preview</h3>
+                    <div class="preview-canvas" id="template-preview-canvas">
+                        <p>Your template preview will appear here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quote Editor Screen -->
+        <div id="quote-editor-screen" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" data-target="dashboard-screen">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </button>
+                <h2>Quote Editor</h2>
+                <button id="export-quote-btn" class="cta-button">
+                    <i class="fas fa-download"></i> Export
+                </button>
+            </div>
+            
+            <div class="editor-container">
+                <div class="editor-sidebar">
+                    <div class="editor-section">
+                        <h3>Quote Text</h3>
+                        <textarea id="quote-text" placeholder="Enter your quote here..." rows="4"></textarea>
+                        <button id="ai-rewrite-btn" class="ai-btn">
+                            <i class="fas fa-magic"></i> AI Rewrite
+                        </button>
+                    </div>
+                    
+                    <div class="editor-section" id="ai-variants" style="display: none;">
+                        <h3>AI Suggested Variants</h3>
+                        <div id="variants-list"></div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <h3>Size Preset</h3>
+                        <div class="size-presets">
+                            <button class="size-btn active" data-size="instagram">Instagram (1080x1080)</button>
+                            <button class="size-btn" data-size="twitter">Twitter/X (1200x675)</button>
+                            <button class="size-btn" data-size="facebook">Facebook (1200x630)</button>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <h3>Style Options</h3>
+                        <div class="style-controls">
+                            <div class="control-group">
+                                <label>Font Size</label>
+                                <input type="range" id="font-size" min="12" max="72" value="32">
+                            </div>
+                            <div class="control-group">
+                                <label>Text Color</label>
+                                <input type="color" id="text-color" value="#ffffff">
+                            </div>
+                            <div class="control-group">
+                                <label>Background</label>
+                                <input type="color" id="bg-color" value="#3b82f6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="editor-canvas-container">
+                    <div class="canvas-wrapper">
+                        <canvas id="quote-canvas" width="1080" height="1080"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Modal -->
+        <div id="export-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Export Options</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="export-options">
+                    <div class="export-group">
+                        <h4>Instagram Size (1080x1080)</h4>
+                        <button class="export-btn" data-format="png" data-size="instagram">
+                            <i class="fas fa-download"></i> Download PNG
+                        </button>
+                    </div>
+                    <div class="export-group">
+                        <h4>Twitter/X Size (1200x675)</h4>
+                        <button class="export-btn" data-format="png" data-size="twitter">
+                            <i class="fas fa-download"></i> Download PNG
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assets Library Screen -->
+        <div id="assets-screen" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" data-target="dashboard-screen">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </button>
+                <h2>Assets Library</h2>
+            </div>
+            
+            <div class="assets-container">
+                <div class="assets-grid" id="assets-grid">
+                    <!-- Assets will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
