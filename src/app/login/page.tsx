@@ -69,12 +69,6 @@ export default function LoginPage() {
     }
   }
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter" && !isLoading) {
-      form.handleSubmit(onSubmit)()
-    }
-  }
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
@@ -86,7 +80,7 @@ export default function LoginPage() {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4" onKeyDown={handleKeyDown}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
                 name="email"
