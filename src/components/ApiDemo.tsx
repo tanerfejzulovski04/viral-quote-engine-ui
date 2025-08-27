@@ -8,6 +8,7 @@ export const ApiDemo: React.FC = () => {
   const { token, setToken, clearToken } = useAuthStore()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [response, setResponse] = useState<any>(null)
 
   const testSuccessRequest = async () => {
@@ -24,9 +25,11 @@ export const ApiDemo: React.FC = () => {
       await new Promise(resolve => setTimeout(resolve, 1000))
       setResponse(mockSuccessResponse.data)
       notifySuccess('API request completed successfully!')
-    } catch (err: any) {
-      setError(err.error?.message || 'An error occurred')
-      notifyError(err.error?.message || 'Request failed')
+    } catch (err: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const errorMessage = (err as any)?.error?.message || 'An error occurred'
+      setError(errorMessage)
+      notifyError(errorMessage)
     } finally {
       setLoading(false)
     }
@@ -42,9 +45,13 @@ export const ApiDemo: React.FC = () => {
         error: { message: 'Validation failed: Invalid request parameters' }
       }
       throw mockError
-    } catch (err: any) {
-      setError(err.error?.message || 'An error occurred')
-      notifyError(err.error?.message || 'Request failed')
+    } catch (err: unknown) {
+      const errorMessage = err && typeof err === 'object' && 'error' in err && 
+                           err.error && typeof err.error === 'object' && 'message' in err.error
+                           ? (err.error as { message: string }).message 
+                           : 'An error occurred'
+      setError(errorMessage)
+      notifyError(errorMessage)
       setResponse(null)
     } finally {
       setLoading(false)
@@ -58,9 +65,13 @@ export const ApiDemo: React.FC = () => {
     try {
       // This will likely fail due to CORS or non-existent endpoint
       await apiClient.get('/nonexistent-endpoint')
-    } catch (err: any) {
-      setError(err.error?.message || 'Network error occurred')
-      notifyError(err.error?.message || 'Network request failed')
+    } catch (err: unknown) {
+      const errorMessage = err && typeof err === 'object' && 'error' in err && 
+                           err.error && typeof err.error === 'object' && 'message' in err.error
+                           ? (err.error as { message: string }).message 
+                           : 'Network error occurred'
+      setError(errorMessage)
+      notifyError(errorMessage)
       setResponse(null)
     } finally {
       setLoading(false)

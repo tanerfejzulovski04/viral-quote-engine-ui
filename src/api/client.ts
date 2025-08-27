@@ -3,7 +3,7 @@ import type { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'a
 import { useAuthStore } from '../store/auth'
 
 // Define API response types
-export interface ApiSuccessResponse<T = any> {
+export interface ApiSuccessResponse<T = unknown> {
   data: T
 }
 
@@ -42,11 +42,12 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response: AxiosResponse<ApiSuccessResponse>) => {
     // Unwrap the data from the success envelope
-    return response.data.data
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return response.data.data as any
   },
   (error) => {
     // Normalize error structure
-    let normalizedError = {
+    const normalizedError = {
       error: {
         message: 'An unexpected error occurred'
       }
