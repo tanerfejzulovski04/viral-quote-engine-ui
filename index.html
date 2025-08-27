@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viral Quote Engine</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Viral Quote Engine</h1>
+            <p>Create and export compelling quotes</p>
+        </header>
+
+        <main>
+            <div class="quote-editor">
+                <label for="quote-text" class="sr-only">Quote text</label>
+                <textarea 
+                    id="quote-text" 
+                    placeholder="Enter your quote here..."
+                    aria-label="Quote text input"
+                    rows="4"
+                ></textarea>
+                
+                <label for="author-text" class="sr-only">Author name</label>
+                <input 
+                    type="text" 
+                    id="author-text" 
+                    placeholder="Author name"
+                    aria-label="Author name input"
+                />
+            </div>
+
+            <div class="controls">
+                <button 
+                    id="export-btn" 
+                    class="btn btn-primary"
+                    aria-label="Export quote"
+                >
+                    Export Quote (Ctrl+S)
+                </button>
+                
+                <button 
+                    id="ai-rewrite-btn" 
+                    class="btn btn-secondary"
+                    aria-label="Open AI rewrite dialog"
+                >
+                    AI Rewrite (Ctrl+K)
+                </button>
+                
+                <button 
+                    id="clear-btn" 
+                    class="btn btn-outline"
+                    aria-label="Clear all text"
+                >
+                    Clear
+                </button>
+            </div>
+
+            <div class="preview">
+                <h3>Preview</h3>
+                <div id="quote-preview" class="quote-display" aria-label="Quote preview">
+                    <blockquote id="preview-text">Your quote will appear here...</blockquote>
+                    <cite id="preview-author"></cite>
+                </div>
+            </div>
+        </main>
+
+        <!-- AI Rewrite Dialog -->
+        <div id="ai-dialog" class="dialog-overlay" aria-hidden="true">
+            <div class="dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+                <header class="dialog-header">
+                    <h2 id="dialog-title">AI Rewrite</h2>
+                    <button 
+                        id="dialog-close" 
+                        class="dialog-close"
+                        aria-label="Close dialog"
+                    >&times;</button>
+                </header>
+                <div class="dialog-body">
+                    <p id="dialog-description">Choose a style for AI to rewrite your quote:</p>
+                    <div class="style-options">
+                        <button class="style-btn" data-style="inspirational" aria-label="Rewrite in inspirational style">
+                            Inspirational
+                        </button>
+                        <button class="style-btn" data-style="witty" aria-label="Rewrite in witty style">
+                            Witty
+                        </button>
+                        <button class="style-btn" data-style="profound" aria-label="Rewrite in profound style">
+                            Profound
+                        </button>
+                        <button class="style-btn" data-style="casual" aria-label="Rewrite in casual style">
+                            Casual
+                        </button>
+                    </div>
+                </div>
+                <footer class="dialog-footer">
+                    <button id="dialog-cancel" class="btn btn-outline" aria-label="Cancel AI rewrite">
+                        Cancel
+                    </button>
+                </footer>
+            </div>
+        </div>
+
+        <!-- Keyboard Shortcuts Help -->
+        <div class="shortcuts-info">
+            <h4>Keyboard Shortcuts:</h4>
+            <ul>
+                <li><kbd>Ctrl</kbd> + <kbd>S</kbd> (or <kbd>Cmd</kbd> + <kbd>S</kbd>): Export Quote</li>
+                <li><kbd>Ctrl</kbd> + <kbd>K</kbd> (or <kbd>Cmd</kbd> + <kbd>K</kbd>): Open AI Rewrite Dialog</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
