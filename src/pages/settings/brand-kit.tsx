@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  // This interface extends HTMLInputElement attributes for reusable Input component
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {

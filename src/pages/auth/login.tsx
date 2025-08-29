@@ -4,7 +4,10 @@ import { useAuth } from '@/contexts/auth-context'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  // This interface extends HTMLInputElement attributes for reusable Input component
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
@@ -40,7 +43,8 @@ export function LoginPage() {
     try {
       await login(email, password)
       navigate('/dashboard')
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_error) {
       setError('Invalid email or password')
     } finally {
       setIsLoading(false)

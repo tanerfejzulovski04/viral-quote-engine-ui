@@ -26,13 +26,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (storedUser) {
       try {
         setUser(JSON.parse(storedUser))
-      } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (_error) {
         localStorage.removeItem('user')
       }
     }
   }, [])
 
-  const login = async (email: string, password: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const login = async (email: string, _password: string) => {
     // Mock login - in real app, this would call an API
     try {
       const mockUser: User = {
@@ -43,12 +45,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       setUser(mockUser)
       localStorage.setItem('user', JSON.stringify(mockUser))
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_error) {
       throw new Error('Invalid credentials')
     }
   }
 
-  const register = async (name: string, email: string, password: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const register = async (name: string, email: string, _password: string) => {
     // Mock registration - in real app, this would call an API
     try {
       const mockUser: User = {
@@ -59,7 +63,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       setUser(mockUser)
       localStorage.setItem('user', JSON.stringify(mockUser))
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_error) {
       throw new Error('Registration failed')
     }
   }
@@ -80,6 +85,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = useContext(AuthContext)
   if (context === undefined) {
