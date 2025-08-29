@@ -1,236 +1,119 @@
-# Viral Quote Engine UI
+### Quick Setup & Bootstrap
 
-Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
-
-## Quick Reference - Current Repository State
-**STATUS: EMPTY REPOSITORY - NO CODE YET**
-- Working directory: `/home/runner/work/viral-quote-engine-ui/viral-quote-engine-ui`
-- Available tools: Node.js v20.19.4, npm v10.8.2, git
-- ✅ WORKS: `ls -la`, `git status`, `npm init`, `node --version`  
-- ❌ FAILS: `npm run build`, `npm run dev`, `npm start` (no package.json scripts)
-- Quick validation: `ls -la` should show `.github/`, `LICENSE`, `README.md`
-
-## Current Repository State
-
-**Repository is in INITIAL/EMPTY state - most development commands will not work yet.**
-
-This repository currently contains:
-- README.md (contains project title: "# viral-quote-engine")
-- LICENSE (GPL v3 license - 674 lines)
-- .github/copilot-instructions.md (this file)
-
-**Missing (needs to be created):**
-- package.json (no build system configured)
-- src/ directory (no source code)
-- Any JavaScript/TypeScript files
-- Build configuration files
-- Test configuration
-- CI/CD workflows
-
-The repository name suggests this will be a user interface application for displaying viral quotes, likely a web-based frontend application.
-
-## Working Effectively
-
-### Initial Repository Setup
-- Clone and explore the repository:
-  ```bash
-  ls -la
-  git --no-pager status
-  git --no-pager log --oneline -10
-  ```
-- Current available tools: Node.js v20.19.4, npm v10.8.2, git
-- Repository structure validation: `find . -type f | grep -v ".git" | head -20`
-
-### When Code is Added to Repository
-
-**CRITICAL: The following commands are placeholders for when actual code is present. Currently, most of these will not work since no package.json or build system exists yet.**
-
-#### For React/Next.js Applications (Expected Pattern):
-- Install dependencies: `npm install` -- NEVER CANCEL. Allow up to 10 minutes for completion.
-- Build the application: `npm run build` -- NEVER CANCEL. Build may take 5-15 minutes. Set timeout to 20+ minutes.
-- Start development server: `npm run dev` -- typically runs on http://localhost:3000
-- Run tests: `npm test` -- NEVER CANCEL. Tests may take 5-10 minutes. Set timeout to 15+ minutes.
-- Lint code: `npm run lint` -- should complete in 1-2 minutes
-- Format code: `npm run format` or `npx prettier --write .` -- if prettier is configured
-
-#### For Vue.js Applications (Alternative Pattern):
-- Install dependencies: `npm install` -- NEVER CANCEL. Allow up to 10 minutes.
-- Build: `npm run build` -- NEVER CANCEL. Set timeout to 20+ minutes.
-- Development: `npm run serve` -- typically runs on http://localhost:8080
-- Test: `npm run test:unit` -- NEVER CANCEL. Set timeout to 15+ minutes.
-- Lint: `npm run lint` -- should complete in 1-2 minutes
-
-#### For Angular Applications (Alternative Pattern):
-- Install dependencies: `npm install` -- NEVER CANCEL. Allow up to 10 minutes.
-- Build: `ng build` or `npm run build` -- NEVER CANCEL. Set timeout to 25+ minutes.
-- Development: `ng serve` or `npm start` -- typically runs on http://localhost:4200
-- Test: `ng test` or `npm test` -- NEVER CANCEL. Set timeout to 15+ minutes.
-- Lint: `ng lint` or `npm run lint` -- should complete in 1-2 minutes
-
-## Validation Requirements
-
-### Current State Validation
-- Always run `ls -la` to verify repository contents
-- Check git status: `git --no-pager status`
-- Verify available tools: `which node npm git`
-
-### When Application Code is Present
-**MANDATORY: Run complete end-to-end validation scenarios after making any changes.**
-
-#### Manual Validation Scenarios (Execute After Code Changes):
-1. **Basic Application Flow** (when UI is implemented):
-   - Start the development server
-   - Navigate to the application in a browser
-   - Verify the quote display functionality works
-   - Test quote generation/refresh mechanisms
-   - Take a screenshot to document UI state
-
-2. **Build and Production Validation**:
-   - Run complete build process
-   - Verify build artifacts are generated
-   - Test production build if serving capability exists
-   - Confirm no build errors or warnings
-
-3. **Code Quality Validation**:
-   - Always run linting before committing: `npm run lint`
-   - Run formatting if configured: `npm run format`
-   - Execute full test suite: `npm test` -- NEVER CANCEL
-   - Check test coverage if configured
-
-## Common Tasks and Troubleshooting
-
-## Getting Started with Development
-
-### First-Time Project Setup (When Ready to Add Code):
-1. **Initialize the project structure:**
-   ```bash
-   npm init -y                    # Creates package.json with defaults
-   mkdir -p src public            # Create standard directories
-   touch src/index.js             # Create entry point
-   ```
-
-2. **Choose and install a UI framework:**
-   ```bash
-   # For React/Next.js:
-   npm install react react-dom next
-   npm install -D @types/react @types/react-dom typescript
-   
-   # For Vue.js:
-   npm install vue
-   npm install -g @vue/cli
-   
-   # For Angular:  
-   npm install -g @angular/cli
-   ng new . --skip-git
-   ```
-
-3. **Add development dependencies:**
-   ```bash
-   # Common development tools:
-   npm install -D eslint prettier
-   npm install -D @eslint/js @typescript-eslint/eslint-plugin
-   ```
-
-### Setting Up New Project Structure (When Ready):
-- Initialize package.json: `npm init -y`
-- Install common UI framework:
-  - React: `npm install react react-dom next`
-  - Vue: `npm install vue @vue/cli`
-  - Angular: `npm install -g @angular/cli && ng new .`
-
-### Repository Maintenance:
-- Check for dependency updates: `npm outdated`
-- Update dependencies: `npm update` -- NEVER CANCEL. May take 5-10 minutes.
-- Clean node_modules if issues: `rm -rf node_modules && npm install`
-
-### Troubleshooting Common Issues:
-
-#### "Missing script" errors:
-- **Cause**: No package.json or script not defined in package.json
-- **Solution**: Add the script to package.json scripts section, or create package.json with `npm init -y`
-
-#### "No such file or directory" errors:
-- **Cause**: Trying to run files that don't exist yet
-- **Solution**: Check current repository state with `ls -la` and `find . -name "*.js" -o -name "*.ts" -o -name "*.json"`
-
-#### Permission denied errors:
-- **Cause**: File permissions or write access issues  
-- **Solution**: Check file permissions with `ls -la` and current directory with `pwd`
-
-#### Build/test failures:
-- **Current State**: Will fail because no build system exists yet
-- **Future**: Once code is added, always wait for completion and check logs for specific error messages
-
-### Common File Locations (When Present):
-- Main source code: `/src/` directory
-- Components: `/src/components/` or `/components/`
-- Styles: `/src/styles/` or `/styles/`
-- Public assets: `/public/` directory
-- Configuration: Root-level config files (package.json, tsconfig.json, etc.)
-
-### Environment Setup Commands (Validated):
 ```bash
-# Current working commands:
-pwd                           # Confirm directory: /home/runner/work/viral-quote-engine-ui/viral-quote-engine-ui
-ls -la                       # List all files: shows .github/, LICENSE, README.md
-cat README.md               # View project description: "# viral-quote-engine"
-git --no-pager log --oneline -5  # View recent commits
-git --no-pager status       # Check repository status
-node --version              # Check Node.js version: v20.19.4
-npm --version               # Check npm version: v10.8.2
-which node npm git          # Verify tool availability
-find . -type f | grep -v ".git"  # List all non-git files
+# Install dependencies
+npm install  # Takes 2 minutes. NEVER CANCEL. Set timeout to 5+ minutes. ALWAYS run this command first since other commands depend on it. Not running this command will cause you to fail. If you can't run this command STOP.
+
+# Start local supabase so that you could test the application
+npm run db:setup # Takes 4-6 minutes, environment-dependent reliability. ALWAYS run this command second since other commands depend on it. In case of error retry it up to 3 times. Not running this command will cause you to fail. If you can't run this command STOP.
+
+# Upload sample documents (optional)
+npm run docs:upload
+
+# Run linting (always works)
+npm run lint  # Takes 1 second. Only minor warnings expected. ALWAYS run this command before you commit. Not running this command can cause you commits to fail.
+
+# Build for production (always works)
+npm run build  # Takes 2-3 seconds. Production build. ALWAYS run this command before you commit. Not running this command can cause you commits to fail.
+
+# Run unit tests (always works)
+npm run test:run  # Takes 15 seconds. ALL tests should pass. ALWAYS run this command before you commit. Not running this command can cause you commits to fail.
+
+# Start development server (always works)
+npm run dev  # Starts in 300ms. Runs on http://localhost:5173
 ```
 
-### Commands That Will Fail (Until Code is Added):
+### Quick Setup & Bootstrap
+
 ```bash
-# These commands will fail with meaningful errors:
-npm run build    # Error: Missing script "build"
-npm run dev      # Error: Missing script "dev"  
-npm run lint     # Error: Missing script "lint"
-npm install      # Works but installs nothing (no dependencies)
-npm test         # Works but shows "Error: no test specified" and exits 1
+# Install dependencies
+npm install  # Takes 2 minutes. NEVER CANCEL. Set timeout to 5+ minutes. ALWAYS run this command first since other commands depend on it. Not running this command will cause you to fail. If you can't run this command STOP.
+
+# Start local supabase so that you could test the application
+npm run db:setup # Takes 4-6 minutes, environment-dependent reliability. ALWAYS run this command second since other commands depend on it. In case of error retry it up to 3 times. Not running this command will cause you to fail. If you can't run this command STOP.
+
+# Upload sample documents (optional)
+npm run docs:upload
+
+# Run linting (always works)
+npm run lint  # Takes 1 second. Only minor warnings expected. ALWAYS run this command before you commit. Not running this command can cause you commits to fail.
+
+# Build for production (always works)
+npm run build  # Takes 2-3 seconds. Production build. ALWAYS run this command before you commit. Not running this command can cause you commits to fail.
+
+# Run unit tests (always works)
+npm run test:run  # Takes 15 seconds. ALL tests should pass. ALWAYS run this command before you commit. Not running this command can cause you commits to fail.
+
+# Start development server (always works)
+npm run dev  # Starts in 300ms. Runs on http://localhost:5173
+```
+### Development Workflow
+
+Execute the steps in Quick Setup & Bootstrap.
+
+### Working with Database
+
+- **Local database URL**: `postgresql://postgres:postgres@localhost:54322/postgres`
+- **API URL**: `http://localhost:54321`
+- **Dashboard**: `http://localhost:54323`
+- **Database schema**: Uses `properties` table for real estate units
+
+### Key Technologies
+
+- **UI Framework**: Vite + React 18+ + TypeScript 5+
+- **UI Components**: shadcn/ui with Radix UI primitives
+- **Styling**: TailwindCSS 3+ with responsive design
+- **Backend**: Supabase (auth, database, real-time)
+- **Testing**: Vitest + React Testing Library + Playwright + MSW
+- **Internationalization**: react-i18next (German primary, English fallback)
+- **Code Quality**: ESLint + Prettier + Husky pre-commit hooks
+
+### Time Expectations
+
+- **Coding agent session length**: Use up to 120+ minutes when working on a feature.
+- **Install**: 2 minutes (NEVER CANCEL - use 5+ minute timeout)
+- **Database setup**: 4-6 minutes (NEVER CANCEL - use 15+ minute timeout, environment-dependent. In case of error retry it up to 3 times.)
+- **Lint**: 3 second
+- **Unit tests**: 15 seconds
+- **Build**: 5 seconds
+- **Dev server start**: 300ms
+- **E2E tests**: 30+ minutes (requires working build)
+
+### Pre-commit Hooks
+
+- Husky automatically runs `lint-staged` on commit
+- Formats code with Prettier
+- Runs ESLint with auto-fix
+- Only commits if quality checks pass
+- If commit fails, then check the errors, fix them and then try again
+
+## Critical Notes
+
+- **Always run `npm run lint` before committing** - CI will fail if linting doesn't pass
+- **If a precommit hook fail, ALWAYS analyze the git log and fix the underlying issue** - Don't leave partially finished work
+- **Build and test before committing** - Run `npm run build` and `npm run test:run` to verify changes
+- **Database setup is environment-dependent** - reliability varies by Docker/networking environment. In case of error retry it up to 3 times.
+- **Use TypeScript strict mode** - all type definitions in `src/lib/database.types.ts`
+- **Path aliases configured**: `@/` maps to `src/`
+- **Responsive design**: Support for desktop (1920x1080, 1366x768, 1440x900) and mobile
+- **Internationalization**: Extract all text to translation files, never hardcode strings
+
+## Test User Credentials
+
+Test user accounts are available after running `npm run db:setup`:
+
+```
+Email: john.doe@example.com      | Password: password | Role: user
+Email: jane.doe@example.com      | Password: password | Role: admin
 ```
 
-## Expected Development Workflow
+## Troubleshooting
 
-1. **Before Making Changes:**
-   - Explore repository structure: `ls -la && find . -name "*.json" -o -name "*.js" -o -name "*.ts" -o -name "*.tsx"`
-   - Check package.json if exists: `cat package.json`
-   - Install dependencies if package.json exists: `npm install`
-
-2. **During Development:**
-   - Start development server: `npm run dev` (or framework equivalent)
-   - Run tests in watch mode if available: `npm run test:watch`
-   - Lint code frequently: `npm run lint`
-
-3. **Before Committing:**
-   - Run full build: `npm run build` -- NEVER CANCEL. Set timeout to 30+ minutes.
-   - Run all tests: `npm test` -- NEVER CANCEL. Set timeout to 20+ minutes.
-   - Run linting: `npm run lint`
-   - Format code: `npm run format` (if configured)
-   - Manual validation of changed functionality
-
-4. **Production Verification:**
-   - Test production build: `npm run build && npm start` (if configured)
-   - Verify all functionality works in production mode
-   - Check for console errors in browser developer tools
-
-## Critical Reminders
-
-- **NEVER CANCEL** any build or test commands. UI applications can have long build times.
-- Always set timeouts of 30+ minutes for builds, 20+ minutes for tests.
-- **ALWAYS** perform manual end-to-end testing after making changes.
-- Take screenshots of UI changes to document visual impact.
-- This repository is currently empty - most commands will fail until code is added.
-- Update these instructions as the project structure evolves and actual commands are validated.
-
-## Repository-Specific Notes
-
-- Project appears to be intended as a viral quote engine user interface
-- License: GPL (see LICENSE file)
-- Currently no CI/CD workflows configured
-- No existing test infrastructure
-- No existing build configuration
-
-**IMPORTANT: Validate and update these instructions once actual application code is added to the repository.**
+- **Build fails**: Run `npm install` first, then check for TypeScript errors
+- **Database setup fails**: Check Docker is running and networking allows container communication
+  - **Storage bucket error**: Fixed in latest version (removed deprecated `public` column)
+  - **Container DNS resolution**: Environment-specific networking issues in CI/restricted environments
+  - **Container runtime errors**: Restart Docker daemon or use `docker system prune -f` to clean up
+  - **Success after retry**: Database setup often succeeds on second attempt if first fails. If it doesn't work on second try, try once again. If it fails STOP with everything else and report error.
+- **Tests fail**: Run `npm install` and ensure dependencies are up to date
+- **Type errors**: Regenerate types with `npx supabase gen types typescript --local > src/lib/database.types.ts` (requires working database)
