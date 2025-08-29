@@ -64,6 +64,7 @@
     box-sizing: border-box;
   }
   body {
-    @apply bg-background text-foreground;
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--background));
   }
 }
