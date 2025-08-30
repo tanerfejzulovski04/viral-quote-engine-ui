@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Edit, Files, Palette, TrendingUp, Users, FileText, Calendar, LogOut } from "lucide-react";
+import { PlusCircle, Edit, Files, Palette, TrendingUp, Users, FileText, Calendar, LogOut, Settings } from "lucide-react";
 
 // Mock data for KPIs and usage
 const kpiData = [
@@ -51,6 +51,13 @@ const quickActions = [
     href: "/brand-kit",
     color: "bg-gradient-to-br from-orange-500 to-orange-600"
   },
+  {
+    title: "Profile Settings",
+    description: "Manage your profile information and preferences",
+    icon: Settings,
+    href: "/settings/profile",
+    color: "bg-gradient-to-br from-indigo-500 to-indigo-600"
+  },
 ];
 
 interface User {
@@ -80,9 +87,13 @@ export default function DashboardPage() {
   };
 
   const handleCardClick = (href: string) => {
-    // For now, just log the navigation - in a real app this would use router
-    console.log(`Navigate to: ${href}`);
-    alert(`Would navigate to: ${href}`);
+    // Navigate to profile settings if it's that route, otherwise show placeholder
+    if (href === "/settings/profile") {
+      window.location.href = href;
+    } else {
+      console.log(`Navigate to: ${href}`);
+      alert(`Would navigate to: ${href}`);
+    }
   };
 
   if (!user) {

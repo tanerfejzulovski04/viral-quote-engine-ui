@@ -111,7 +111,7 @@ export default function ProfileSettings() {
             variant: "destructive",
           })
         }
-      } catch (error) {
+      } catch {
         toast({
           title: "Error",
           description: "Network error while loading profile",
@@ -152,7 +152,7 @@ export default function ProfileSettings() {
           variant: "destructive",
         })
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Network error while saving profile",
@@ -195,7 +195,7 @@ export default function ProfileSettings() {
           variant: "destructive",
         })
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Network error while switching plan",
@@ -287,7 +287,7 @@ export default function ProfileSettings() {
               <div className="space-y-2">
                 <FormLabel>Current Plan</FormLabel>
                 <div>
-                  <Badge variant={currentPlan?.color as any || "secondary"}>
+                  <Badge variant={currentPlan?.color === 'secondary' ? 'secondary' : 'default'}>
                     {currentPlan?.label || userData?.plan}
                   </Badge>
                 </div>

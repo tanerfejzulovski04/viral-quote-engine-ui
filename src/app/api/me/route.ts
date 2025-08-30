@@ -48,7 +48,7 @@ export async function PUT(request: NextRequest) {
       data: updatedUser,
       message: 'Profile updated successfully!'
     })
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { success: false, error: 'Invalid request data' },
       { status: 400 }

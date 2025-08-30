@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
       },
       message: `Plan switched to ${body.plan} successfully!`
     })
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { success: false, error: 'Invalid request data' },
       { status: 400 }
