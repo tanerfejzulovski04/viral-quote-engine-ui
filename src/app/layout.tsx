@@ -1,23 +1,23 @@
-import type { Metadata } from 'next'
-import './globals.css'
+import type { Metadata } from "next";
+import "./globals.css";
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'Viral Quote Engine',
-  description: 'Profile settings and quote management',
-}
+  title: "Viral Quote Engine",
+  description: "Create and manage viral quotes with AI assistance",
+};
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-      <body className="font-sans">
+      <body className="antialiased">
         {children}
         <Toaster />
       </body>
     </html>
-  )
+  );
 }

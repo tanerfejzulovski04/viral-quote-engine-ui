@@ -1,5 +1,4 @@
 import * as React from "react"
-import * as LabelPrimitive from "@radix-ui/react-label"
 import { Slot } from "@radix-ui/react-slot"
 import {
   Controller,
@@ -9,7 +8,6 @@ import {
   FormProvider,
   useFormContext,
 } from "react-hook-form"
-
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
 
@@ -42,32 +40,12 @@ const FormField = <
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext)
   const itemContext = React.useContext(FormItemContext)
-  
+  const { getFieldState, formState } = useFormContext()
+
+  const fieldState = getFieldState(fieldContext.name, formState)
+
   if (!fieldContext) {
     throw new Error("useFormField should be used within <FormField>")
-  }
-
-  if (!itemContext) {
-    throw new Error("useFormField should be used within <FormItem>")
-  }
-
-  let getFieldState: any = () => ({})
-  let formState: any = {}
-  
-  try {
-    const formContext = useFormContext()
-    if (formContext) {
-      ({ getFieldState, formState } = formContext)
-    }
-  } catch (error) {
-    // Form context not available, use empty defaults
-  }
-
-  let fieldState: any = {}
-  try {
-    fieldState = getFieldState(fieldContext.name, formState)
-  } catch (error) {
-    // Field state not available
   }
 
   const { id } = itemContext
@@ -105,19 +83,10 @@ const FormItem = React.forwardRef<
 FormItem.displayName = "FormItem"
 
 const FormLabel = React.forwardRef<
-  React.ElementRef<typeof LabelPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
+  React.ElementRef<typeof Label>,
+  React.ComponentPropsWithoutRef<typeof Label>
 >(({ className, ...props }, ref) => {
-  let error: any = null
-  let formItemId = ""
-  
-  try {
-    const { error: fieldError, formItemId: fieldFormItemId } = useFormField()
-    error = fieldError
-    formItemId = fieldFormItemId
-  } catch (e) {
-    // useFormField not available, use defaults
-  }
+  const { error, formItemId } = useFormField()
 
   return (
     <Label
@@ -134,20 +103,7 @@ const FormControl = React.forwardRef<
   React.ElementRef<typeof Slot>,
   React.ComponentPropsWithoutRef<typeof Slot>
 >(({ ...props }, ref) => {
-  let error: any = null
-  let formItemId = ""
-  let formDescriptionId = ""
-  let formMessageId = ""
-  
-  try {
-    const { error: fieldError, formItemId: fieldFormItemId, formDescriptionId: fieldFormDescriptionId, formMessageId: fieldFormMessageId } = useFormField()
-    error = fieldError
-    formItemId = fieldFormItemId
-    formDescriptionId = fieldFormDescriptionId
-    formMessageId = fieldFormMessageId
-  } catch (e) {
-    // useFormField not available, use defaults
-  }
+  const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 
   return (
     <Slot
@@ -169,14 +125,7 @@ const FormDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => {
-  let formDescriptionId = ""
-  
-  try {
-    const { formDescriptionId: fieldFormDescriptionId } = useFormField()
-    formDescriptionId = fieldFormDescriptionId
-  } catch (e) {
-    // useFormField not available, use defaults
-  }
+  const { formDescriptionId } = useFormField()
 
   return (
     <p
@@ -193,17 +142,7 @@ const FormMessage = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => {
-  let error: any = null
-  let formMessageId = ""
-  
-  try {
-    const { error: fieldError, formMessageId: fieldFormMessageId } = useFormField()
-    error = fieldError
-    formMessageId = fieldFormMessageId
-  } catch (e) {
-    // useFormField not available, use defaults
-  }
-  
+  const { error, formMessageId } = useFormField()
   const body = error ? String(error?.message) : children
 
   if (!body) {
