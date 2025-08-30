@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Viral Quote Engine",
-  description: "Authentication system for Viral Quote Engine",
+  description: "Create and manage viral quotes with AI assistance",
 };
 
 export default function RootLayout({
