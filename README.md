@@ -1,6 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Viral Quote Engine UI
 
-<!-- CI trigger -->
+A modern viral quote engine with templates gallery and quote generator built with Next.js, shadcn/ui, and TanStack Table.
+
+## Features
+
+- **Templates Gallery**: Browse global and user templates with filtering
+- **CRUD Operations**: Create, edit, and delete user templates
+- **JSON Configuration**: Flexible template configuration with validation
+- **User Authentication**: Login and registration system
+- **Dashboard**: User dashboard with analytics
+- **Brand Kit**: Customizable brand settings
+- **Responsive Design**: Built with Tailwind CSS and shadcn/ui components
+- **Type Safe**: Full TypeScript implementation
 
 ## Getting Started
 
@@ -21,6 +32,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Tech Stack
+
+- **Next.js 15.5.2** - React framework with Turbopack
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS v4** - Styling
+- **shadcn/ui** - UI components
+- **TanStack Table** - Data table functionality
+- **React Hook Form** - Form handling
+- **Zod** - Schema validation
+- **Lucide React** - Icons
 
 ## Learn More
 

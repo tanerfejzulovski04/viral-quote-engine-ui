@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: "Viral Quote Engine",
-  description: "Create and manage viral quotes with AI assistance",
+  description: "Create and manage viral quotes with AI assistance and templates",
 };
 
 export default function RootLayout({
