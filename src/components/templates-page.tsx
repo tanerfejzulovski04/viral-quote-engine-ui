@@ -5,11 +5,10 @@ import {
   useReactTable,
   getCoreRowModel,
   getPaginationRowModel,
-  createColumnHelper,
   type ColumnDef,
   flexRender,
 } from "@tanstack/react-table";
-import { MoreHorizontal, Edit, Trash2, Play } from "lucide-react";
+import { Edit, Trash2, Play } from "lucide-react";
 import { Template } from "@/types/template";
 import { templateStore } from "@/lib/data/templates";
 import {
@@ -38,21 +37,21 @@ import {
 } from "@/components/ui/dialog";
 import TemplateFormDialog from "./template-form-dialog";
 
-const columnHelper = createColumnHelper<Template>();
-
 export default function TemplatesPage() {
   const [activeTab, setActiveTab] = useState<"all" | "global" | "user">("all");
-  const [templates, setTemplates] = useState<Template[]>(templateStore.getAllTemplates());
   const [editingTemplate, setEditingTemplate] = useState<Template | null>(null);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const refreshTemplates = () => {
-    setTemplates(templateStore.getAllTemplates());
+    setRefreshKey(prev => prev + 1);
   };
 
   const filteredTemplates = useMemo(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    refreshKey; // Used to trigger re-computation when templates change
     return templateStore.getTemplatesByScope(activeTab);
-  }, [activeTab]);
+  }, [activeTab, refreshKey]);
 
   const handleDelete = (template: Template) => {
     if (template.scope === "user") {

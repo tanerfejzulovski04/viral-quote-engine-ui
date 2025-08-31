@@ -28,7 +28,7 @@ export default function TemplateFormDialog({
   const validateJSON = (text: string): object | null => {
     try {
       return JSON.parse(text);
-    } catch (err) {
+    } catch {
       return null;
     }
   };
@@ -66,7 +66,7 @@ export default function TemplateFormDialog({
         });
       }
       onSuccess();
-    } catch (err) {
+    } catch {
       setError("Failed to save template. Please try again.");
     } finally {
       setIsSubmitting(false);

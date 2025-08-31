@@ -53,7 +53,7 @@ export default function EditorPage() {
   return (
     <div className="container mx-auto py-8">
       <div className="mb-8">
-        <Link href="/">
+        <Link href="/templates">
           <Button variant="outline">← Back to Templates</Button>
         </Link>
       </div>
